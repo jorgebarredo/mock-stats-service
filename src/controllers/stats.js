@@ -1,11 +1,17 @@
 const sessionStat = require('../models/sessionStat');
+
 const User = require('../models/user').User;
 
-class Courses {
+class Stats {
     constructor() {
         this.users = new Map();
     }
 
+    /**
+     * Get aggregated stats for the given userId and curseId.
+     * @param {string} userId User Id
+     * @param {string} courseId Course Id
+     */
     getCourseStats(userId, courseId) {
         const user = this.users.get(userId);
         if (!user) {
@@ -21,6 +27,12 @@ class Courses {
         return courseStats;
     }
 
+    /**
+     * Get stats for the given userId, courseId and sessionId.
+     * @param {string} userId User Id
+     * @param {string} courseId Course Id
+     * @param {string} sessionId Session Id
+     */
     getSessionStats(userId, courseId, sessionId) {
         const user = this.users.get(userId);
         if (!user) {
@@ -40,6 +52,12 @@ class Courses {
         return sessionStats;
     }
 
+    /**
+     * Save session stats event.
+     * @param {string} userId User Id
+     * @param {string} courseId Course Id
+     * @param {object} session Object with sessionId, totalModulesStudied, averageScore, timeStudied fields
+     */
     saveSessionStats(userId, courseId, session) {
         if (!this.users.has(userId)) {
             this.users.set(userId, new User());
@@ -56,5 +74,5 @@ class Courses {
 }
 
 module.exports = {
-    Courses: Courses
+    Stats: Stats
 }
