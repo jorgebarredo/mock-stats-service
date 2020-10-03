@@ -18,7 +18,9 @@ class SessionStat {
             session.timeStudied += sessionStat.timeStudied;
         };
 
-        session.averageScore /= session.totalModulesStudied;
+        if (session.totalModulesStudied > 0) {
+            session.averageScore /= session.totalModulesStudied;
+        }
 
         return session;
     }
