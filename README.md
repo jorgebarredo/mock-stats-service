@@ -27,6 +27,7 @@ Mock Stats Service
     ```
     It should create an ec2 instance running a server on port 3000. The public ip is given by terraform, after using terraform apply.
     - we could test using postman by changing the variable baseUrl to: http://public-ip:3000 and following the steps in the Postman section.
+    - To destroy all resources created by terraform, type `terraform destroy`
 
 ## Notes:
 - The swagger file provided is not a standard swagger file. I tried to use it in Postman to import a collection but the 'schema' fields were not right.
