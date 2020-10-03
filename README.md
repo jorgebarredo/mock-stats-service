@@ -16,7 +16,17 @@ Mock Stats Service
         npm install
         node index.js
         ```
-
+- Terraform:
+    - Install terraform
+    - Go to AWS, IAM service. Create a new user called terraform. Give it "Programmatic Access". Set permissions: Attach exicting policies directly and give it AdministratorAccess. Then create user. Copy the "Access Key ID" into the terraform folder: terraform.tfvars: access-key; and the "Secret Access Key" into aws-secret-key on the same file.
+    - Open terminal. Go to folder terraform
+    - execute:
+    ```
+    terraform init
+    terraform apply
+    ```
+    It should create an ec2 instance running a server on port 3000. The public ip is given by terraform, after using terraform apply.
+    - we could test using postman by changing the variable baseUrl to: http://public-ip:3000 and following the steps in the Postman section.
 
 ## Notes:
 - The swagger file provided is not a standard swagger file. I tried to use it in Postman to import a collection but the 'schema' fields were not right.
