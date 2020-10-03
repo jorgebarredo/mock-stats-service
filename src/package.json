@@ -1,0 +1,15 @@
+{
+  "name": "stats-service-mock",
+  "version": "0.0.1",
+  "description": "Simple mock for the stats service ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jorge Barredo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
