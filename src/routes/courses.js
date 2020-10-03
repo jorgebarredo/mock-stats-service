@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const Stats = require('../controllers/stats').Stats;
+
+const stats = new Stats();
 
 /**
  * Fetches a single study session.
@@ -9,10 +12,12 @@ router.get('/:courseId', (req, res) => {
         res.sendStatus(401); // Unauthorized.
     }
 
-    const totalModulesStudied = 7;
-    const averageScore = 3;
-    const timeStudied = 999;
-    res.json({totalModulesStudied, averageScore, timeStudied});
+    try {
+        const courseStats = stats.getCourseStats(userId, req.params.courseId);
+        res.send(courseStats);
+    } catch {
+        res.sendStatus(404); // Not found.
+    }
 });
 
 /**
@@ -24,10 +29,12 @@ router.get('/:courseId/sessions/:sessionId', (req, res) => {
         res.sendStatus(401); // Unauthorized
     }
 
-    const totalModulesStudied = 7;
-    const averageScore = 3;
-    const timeStudied = 999;
-    res.json({totalModulesStudied, averageScore, timeStudied});
+    try {
+        const sessionStats = stats.getSessionStats(userId, req.params.courseId, req.params.sessionId);    
+        res.send(sessionStats);
+    } catch {
+        res.sendStatus(404);
+    }
 });
 
 /**
@@ -43,6 +50,7 @@ router.post('/:courseId', (req, res) => {
         res.sendStatus(400); // Bad request
     }
 
+    const stat = stats.saveSessionStats(userId, req.params.courseId, req.body);
     res.sendStatus(201);
 });
 
