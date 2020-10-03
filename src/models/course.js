@@ -8,6 +8,20 @@ class SessionStat {
         this.averageScore = averageScore;
         this.timeStudied = timeStudied;
     }
+
+    static aggregate(sessions) {
+        const session = new SessionStat();
+        for (const sessionStat of sessions) {
+            console.log(sessionStat);
+            session.totalModulesStudied += sessionStat.totalModulesStudied;
+            session.averageScore += sessionStat.averageScore * sessionStat.totalModulesStudied;
+            session.timeStudied += sessionStat.timeStudied;
+        };
+
+        session.averageScore /= session.totalModulesStudied;
+
+        return session;
+    }
 }
 
 class CourseStat {
@@ -29,17 +43,8 @@ class CourseStat {
     }
 
     getCourseStats() {
-        const session = new SessionStat();
-        for (const sessionStat of this.sessions.values()) {
-            console.log(sessionStat);
-            session.totalModulesStudied += sessionStat.totalModulesStudied;
-            session.averageScore += sessionStat.averageScore * sessionStat.totalModulesStudied;
-            session.timeStudied += sessionStat.timeStudied;
-        };
-
-        session.averageScore /= session.totalModulesStudied;
-
-        return session;
+        const sessions = Array.from(this.sessions.values());
+        return SessionStat.aggregate(sessions);
     }
 }
 
