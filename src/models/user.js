@@ -5,6 +5,10 @@ class User {
         this.courses = new Map();
     }
 
+    /**
+     * Get a course stat and create one if it does not exist.
+     * @param {string} courseId Course Id
+     */
     getCourse(courseId) {
         if (!this.courses.has(courseId)) {
             this.courses.set(courseId, new CourseStat());
