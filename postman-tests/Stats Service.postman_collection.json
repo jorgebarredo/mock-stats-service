@@ -1595,7 +1595,7 @@
 												"id": "aaad53de-63b4-4047-aa9b-d55cc8808dc4",
 												"exec": [
 													"pm.test(\"Should return Bad Request when totalModulesStudied is a negativenumber\", function () {",
-													"    pm.response.to.have.status(201);",
+													"    pm.response.to.have.status(400);",
 													"});"
 												],
 												"type": "text/javascript"
@@ -1686,7 +1686,7 @@
 												"id": "f326a99a-d276-4405-b735-49e9cb990e6d",
 												"exec": [
 													"pm.test(\"Should return Bad Request when averageScore is a negative number\", function () {",
-													"    pm.response.to.have.status(201);",
+													"    pm.response.to.have.status(400);",
 													"});"
 												],
 												"type": "text/javascript"
@@ -1777,7 +1777,7 @@
 												"id": "6603720c-eecd-4efd-a713-17f094cb5f68",
 												"exec": [
 													"pm.test(\"Should return Bad Request when timeStudied is a negative number\", function () {",
-													"    pm.response.to.have.status(201);",
+													"    pm.response.to.have.status(400);",
 													"});"
 												],
 												"type": "text/javascript"
