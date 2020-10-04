@@ -30,7 +30,7 @@
     - On the *'set permissions'* section, select *'Attach existing policies directly'* and give it AdministratorAccess.
     - Create the user.
     - Copy the user's *'Access Key ID'* and *'Secret Access Key'*. This data may not be accessable anymore.
-- Copy the user's *'Access Key ID'* and *'Secret Access Key'* into the terraform/terraform.tfvars under *'access-key'* and *'aws-secret-key'* values respectively.
+- Copy the user's *'Access Key ID'* and *'Secret Access Key'* into *'terraform/terraform.tfvars'* file under *'access-key'* and *'aws-secret-key'* values respectively.
 - Open terminal. Navigate to the 'terraform' folder.
 - Type:
     ```
@@ -38,6 +38,6 @@
     terraform apply
     ```
 - Remember to confirm by typing: `yes`
-- This should create an EC2 instance running a server on port 3000. The public IP is given by the terraform output, after executing `terraform apply`.
+- This should create an EC2 instance running a server on port 3000. The public IP is given by the Terraform output, after executing `terraform apply`.
 - Now it is possible to test using Postman by changing the variable 'baseUrl' to http://public-ip:3000 and following the steps on the 'Testing with Postman' section.
-- To destroy all resources created by terraform, type `terraform destroy`. Remember to confirm: `yes`.
+- To destroy all resources created by Terraform, type `terraform destroy`. Remember to confirm: `yes`.
