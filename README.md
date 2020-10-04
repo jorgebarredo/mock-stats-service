@@ -1,5 +1,13 @@
 # Mock Stats Service
 
+## Assumptions:
+- Requests with no 'X-User-Id' header response Unauthorized (401)
+- GET requests with a user, course, or session that is not in the system yet response Not Found (404)
+- Aggregating stats for a course is calculated as follows:
+    - totalModulesStudied as the sum of all session totalModulesStudied;
+    - timeStudied as the sum of all session timeStudied;
+    - averageScore as a weighted average, ie, the sum of averageScore * totalModulesStudied divided by the sum of all session totalModulesStudied.
+
 ## Testing with Postman:
 - Install Postman.
 - Import collection from *'postman-tests/Stats Service.postman_collection.js'*.
