@@ -10,6 +10,7 @@ router.get('/:courseId', (req, res) => {
     const userId = req.header('X-User-Id');
     if (!userId) {
         res.sendStatus(401); // Unauthorized.
+        return;
     }
 
     try {
@@ -27,13 +28,14 @@ router.get('/:courseId/sessions/:sessionId', (req, res) => {
     const userId = req.header('X-User-Id');
     if (!userId) {
         res.sendStatus(401); // Unauthorized
+        return;
     }
 
     try {
         const sessionStats = stats.getSessionStats(userId, req.params.courseId, req.params.sessionId);    
         res.send(sessionStats);
     } catch {
-        res.sendStatus(404);
+        res.sendStatus(404); // Not found
     }
 });
 
@@ -44,10 +46,12 @@ router.post('/:courseId', (req, res) => {
     const userId = req.header('X-User-Id');
     if (!userId) {
         res.sendStatus(401); // Unauthorized
+        return;
     }
 
     if (!isBodyValid(req.body)) {
         res.sendStatus(400); // Bad request
+        return;
     }
 
     const stat = stats.saveSessionStats(userId, req.params.courseId, req.body);
