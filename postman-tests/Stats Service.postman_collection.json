@@ -10,828 +10,2573 @@
 			"name": "courses",
 			"item": [
 				{
-					"name": "/courses/:courseId/sessions/:sessionId",
-					"event": [
+					"name": "no user",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"id": "4f714137-9b96-445c-95a9-644808661118",
-								"exec": [
-									"pm.test(\"Should return Not Found when values are not present\", function () {",
-									"    pm.response.to.have.status(404);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "3142ebe8-1f7b-4daa-8a3c-20dc8726d21e",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session01}}",
-							"host": [
-								"{{baseUrl}}"
+							"name": "/courses/:courseId/sessions/:sessionId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "597ec359-3f6f-4152-8ca9-172518263ba1",
+										"exec": [
+											"pm.test(\"Should return Unauthorized when user header is missing\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "27258389-722d-4348-bfa2-b90021f214fe",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"path": [
-								"courses",
-								"{{course1}}",
-								"sessions",
-								"{{session01}}"
-							]
-						},
-						"description": "Fetches a single study session"
-					},
-					"response": [
-						{
-							"name": "Study session stats",
-							"originalRequest": {
+							"request": {
 								"method": "GET",
 								"header": [
 									{
 										"description": "(Required) Identifies the user",
 										"key": "X-User-Id",
-										"value": "<uuid>"
+										"value": "{{user1}}",
+										"disabled": true
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+									"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session01}}",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"courses",
-										":courseId",
+										"{{course1}}",
 										"sessions",
-										":sessionId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
-										},
-										{
-											"key": "sessionId"
-										}
+										"{{session01}}"
 									]
-								}
+								},
+								"description": "Fetches a single study session"
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
+							"response": [
 								{
-									"key": "Content-Type",
-									"value": "application/json"
+									"name": "Study session stats",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "<uuid>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId",
+												"sessions",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "courseId"
+												},
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
 								}
-							],
-							"cookie": [],
-							"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
-						}
-					]
-				},
-				{
-					"name": "/courses/:courseId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "6294f515-be16-44a4-aed7-214496cc37e5",
-								"exec": [
-									"pm.test(\"Should return Not Found when course is not present\", function () {",
-									"    pm.response.to.have.status(404);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"strictSSL": false
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}"
 							]
 						},
-						"description": "Fetches course lifetime statistics"
-					},
-					"response": [
 						{
-							"name": "Course lifetime stats",
-							"originalRequest": {
+							"name": "/courses/:courseId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c90791c7-deba-428e-9d75-07e59fec8077",
+										"exec": [
+											"pm.test(\"Should return Unauthorized when user header is missing\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
 								"method": "GET",
 								"header": [
 									{
 										"description": "(Required) Identifies the user",
 										"key": "X-User-Id",
-										"value": "<string>"
+										"value": "{{user1}}",
+										"disabled": true
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId",
+									"raw": "{{baseUrl}}/courses/{{course1}}",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"courses",
-										":courseId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
-										}
+										"{{course1}}"
 									]
-								}
+								},
+								"description": "Fetches course lifetime statistics"
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
+							"response": [
 								{
-									"key": "Content-Type",
-									"value": "application/json"
+									"name": "Course lifetime stats",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
 								}
-							],
-							"cookie": [],
-							"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
-						}
-					]
-				},
-				{
-					"name": "/courses/:courseId session1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "56f086d5-2732-40ab-b09d-9d545cc9a61b",
-								"exec": [
-									"pm.test(\"Should return 201 (created) when adding session1 to course1 for user1\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}"
 							]
 						},
-						"description": "Persists a session study event"
-					},
-					"response": [
 						{
-							"name": "OK",
-							"originalRequest": {
+							"name": "/courses/:courseId session1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "880af024-53d4-4558-9867-b8130cd8a59d",
+										"exec": [
+											"pm.test(\"Should return Unauthorized when user header is missing\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
 								"method": "POST",
 								"header": [
 									{
 										"description": "(Required) Identifies the user",
 										"key": "X-User-Id",
-										"value": "<uuid>"
+										"value": "{{user1}}",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+									"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId",
+									"raw": "{{baseUrl}}/courses/{{course1}}",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"courses",
-										":courseId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
-										}
+										"{{course1}}"
 									]
-								}
+								},
+								"description": "Persists a session study event"
 							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "text",
-							"header": [
+							"response": [
 								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "/courses/:courseId/sessions/:sessionId session1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ebd33b15-833e-405f-b2d2-cab0a896639d",
-								"exec": [
-									"pm.test(\"Should return an object with valid fields\", function () {",
-									"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
-									"    pm.response.to.have.jsonBody(\"averageScore\");",
-									"    pm.response.to.have.jsonBody(\"timeStudied\");",
-									"});",
-									"",
-									"pm.test(\"Should return fields added for session1\", function () {",
-									"    pm.expect(pm.response.json().totalModulesStudied).to.equal(7);",
-									"    pm.expect(pm.response.json().averageScore).to.equal(2);",
-									"    pm.expect(pm.response.json().timeStudied).to.equal(999);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session01}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}",
-								"sessions",
-								"{{session01}}"
-							]
-						},
-						"description": "Fetches a single study session"
-					},
-					"response": [
-						{
-							"name": "Study session stats",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) Identifies the user",
-										"key": "X-User-Id",
-										"value": "<uuid>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"courses",
-										":courseId",
-										"sessions",
-										":sessionId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "<uuid>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
 										},
-										{
-											"key": "sessionId"
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId"
+												}
+											]
 										}
-									]
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
 								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
-						}
-					]
-				},
-				{
-					"name": "/courses/:courseId only session1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "919fc5ae-724f-41c6-9fd0-18fb9b09c306",
-								"exec": [
-									"pm.test(\"Should return an object with valid fields\", function () {",
-									"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
-									"    pm.response.to.have.jsonBody(\"averageScore\");",
-									"    pm.response.to.have.jsonBody(\"timeStudied\");",
-									"});",
-									"",
-									"pm.test(\"Should return fields added for session1\", function () {",
-									"    pm.expect(pm.response.json().totalModulesStudied).to.equal(7);",
-									"    pm.expect(pm.response.json().averageScore).to.equal(2);",
-									"    pm.expect(pm.response.json().timeStudied).to.equal(999);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
+							]
 						}
 					],
-					"protocolProfileBehavior": {
-						"strictSSL": false
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}"
-							]
-						},
-						"description": "Fetches course lifetime statistics"
-					},
-					"response": [
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "invalid user",
+					"item": [
 						{
-							"name": "Course lifetime stats",
-							"originalRequest": {
+							"name": "/courses/:courseId/sessions/:sessionId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "da5ae1a1-69e7-4c9e-8d60-c20b833ce520",
+										"exec": [
+											"pm.test(\"Should return Not Found when user does not exist\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "125bfb56-27f6-4347-8d7c-88847cef4d43",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
 								"method": "GET",
 								"header": [
 									{
 										"description": "(Required) Identifies the user",
 										"key": "X-User-Id",
-										"value": "<string>"
+										"value": "user-not-present"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId",
+									"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session01}}",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"courses",
-										":courseId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
-										}
+										"{{course1}}",
+										"sessions",
+										"{{session01}}"
 									]
-								}
+								},
+								"description": "Fetches a single study session"
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
+							"response": [
 								{
-									"key": "Content-Type",
-									"value": "application/json"
+									"name": "Study session stats",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "<uuid>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId",
+												"sessions",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "courseId"
+												},
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
+								}
+							]
+						},
+						{
+							"name": "/courses/:courseId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "92814191-9b4d-480f-9dab-c8467b716e86",
+										"exec": [
+											"pm.test(\"Should return Not Found when user does not exist\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
-							"cookie": [],
-							"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
-						}
-					]
-				},
-				{
-					"name": "/courses/:courseId/sessions/:sessionId session2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f7603897-f947-4380-b8d4-7352fcd153a4",
-								"exec": [
-									"pm.test(\"Should return Not Found when session2 is not present\", function () {",
-									"    pm.response.to.have.status(404);",
-									"});"
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) Identifies the user",
+										"key": "X-User-Id",
+										"value": "user-not-present"
+									}
 								],
-								"type": "text/javascript"
-							}
-						},
+								"url": {
+									"raw": "{{baseUrl}}/courses/{{course1}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses",
+										"{{course1}}"
+									]
+								},
+								"description": "Fetches course lifetime statistics"
+							},
+							"response": [
+								{
+									"name": "Course lifetime stats",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
+								}
+							]
+						}
+					],
+					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2f15797b-dc70-4819-8282-22a72e8bca0b",
+								"id": "74621866-9d39-4c9f-aa13-0a5ae89b4a84",
+								"type": "text/javascript",
 								"exec": [
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session02}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}",
-								"sessions",
-								"{{session02}}"
-							]
 						},
-						"description": "Fetches a single study session"
-					},
-					"response": [
-						{
-							"name": "Study session stats",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) Identifies the user",
-										"key": "X-User-Id",
-										"value": "<uuid>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"courses",
-										":courseId",
-										"sessions",
-										":sessionId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
-										},
-										{
-											"key": "sessionId"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
-						}
-					]
-				},
-				{
-					"name": "/courses/:courseId session2",
-					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "f7cb913d-d84a-459d-a8f9-40c17c63ef08",
+								"id": "61f4bd5a-8b9a-4ac4-b8d0-84ffb0cd840b",
+								"type": "text/javascript",
 								"exec": [
-									"pm.test(\"Adding session1 to course1 for user1 should return 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});"
-								],
-								"type": "text/javascript"
+									""
+								]
 							}
 						}
 					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"sessionId\": \"{{session02}}\",\n    \"totalModulesStudied\": 3,\n    \"averageScore\": 3,\n    \"timeStudied\": 999\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}"
-							]
-						},
-						"description": "Persists a session study event"
-					},
-					"response": [
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "invalid course",
+					"item": [
 						{
-							"name": "OK",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"description": "(Required) Identifies the user",
-										"key": "X-User-Id",
-										"value": "<uuid>"
+							"name": "/courses/:courseId/sessions/:sessionId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4f714137-9b96-445c-95a9-644808661118",
+										"exec": [
+											"pm.test(\"Should return Not Found when course does not exist for current user\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
 									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
 								},
-								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"courses",
-										":courseId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
-										}
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "text",
-							"header": [
 								{
-									"key": "Content-Type",
-									"value": "text/plain"
+									"listen": "prerequest",
+									"script": {
+										"id": "3142ebe8-1f7b-4daa-8a3c-20dc8726d21e",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "/courses/:courseId/sessions/:sessionId session2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "24c62ecb-5f24-4f96-8fdd-2dd3cd243695",
-								"exec": [
-									"pm.test(\"Should return an object with valid fields\", function () {",
-									"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
-									"    pm.response.to.have.jsonBody(\"averageScore\");",
-									"    pm.response.to.have.jsonBody(\"timeStudied\");",
-									"});",
-									"",
-									"pm.test(\"Should return an fields added for session2\", function () {",
-									"    pm.expect(pm.response.json().totalModulesStudied).to.equal(3);",
-									"    pm.expect(pm.response.json().averageScore).to.equal(3);",
-									"    pm.expect(pm.response.json().timeStudied).to.equal(999);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session02}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}",
-								"sessions",
-								"{{session02}}"
-							]
-						},
-						"description": "Fetches a single study session"
-					},
-					"response": [
-						{
-							"name": "Study session stats",
-							"originalRequest": {
+							"request": {
 								"method": "GET",
 								"header": [
 									{
 										"description": "(Required) Identifies the user",
 										"key": "X-User-Id",
-										"value": "<uuid>"
+										"value": "{{user1}}"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+									"raw": "{{baseUrl}}/courses/non-existing-course/sessions/{{session01}}",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"courses",
-										":courseId",
+										"non-existing-course",
 										"sessions",
-										":sessionId"
-									],
-									"variable": [
+										"{{session01}}"
+									]
+								},
+								"description": "Fetches a single study session"
+							},
+							"response": [
+								{
+									"name": "Study session stats",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "<uuid>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId",
+												"sessions",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "courseId"
+												},
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
 										{
-											"key": "courseId"
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
+								}
+							]
+						},
+						{
+							"name": "/courses/:courseId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6294f515-be16-44a4-aed7-214496cc37e5",
+										"exec": [
+											"pm.test(\"Should return Not Found when course does not exist for current user\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) Identifies the user",
+										"key": "X-User-Id",
+										"value": "{{user1}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/courses/non-existing-course",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses",
+										"non-existing-course"
+									]
+								},
+								"description": "Fetches course lifetime statistics"
+							},
+							"response": [
+								{
+									"name": "Course lifetime stats",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2a32c6ca-6de7-43cb-b015-2c2190b65ec7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a161ae0-f17b-48bf-9792-2b4a7c9e7ac1",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "invalid body",
+					"item": [
+						{
+							"name": "missing data",
+							"item": [
+								{
+									"name": "/courses/:courseId session1 (no body)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e31dfa81-6870-47f3-ac5f-3db7e5ceaf92",
+												"exec": [
+													"pm.test(\"Should return Bad Request when there is no body\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (no sessionId)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e6a7fb34-e5c8-406f-bc25-c6b70461c776",
+												"exec": [
+													"pm.test(\"Should return Bad Request when there is no sessionId field\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (no totalModulesStudied)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "aa6d23b0-6cc2-4b14-ac6f-b120ee3258a7",
+												"exec": [
+													"pm.test(\"Should return Bad Request when there is no totalModulesStudied field\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (no averageScore)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9a1b27a8-d6e3-4987-b8b3-7044bce3f265",
+												"exec": [
+													"pm.test(\"Should return Bad Request when there is no averageScore field\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (no timeStudied)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2f82d469-9b9f-49bd-aeaf-ed8fae12ff5b",
+												"exec": [
+													"pm.test(\"Should return Bad Request when there is no timeStudied field\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "514cad7f-97a3-45a0-966b-c69eec4b3c46",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "61971602-d1e9-491f-9f6c-e8abe9906003",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "wrong field type",
+							"item": [
+								{
+									"name": "/courses/:courseId session1 (sessionId type)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "6ecfd7c2-bb35-4f09-aecc-014c750f1c10",
+												"exec": [
+													"pm.test(\"Should return Bad Request when sessionId is not a string\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": 1,\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (totalModulesStudied type)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f7bda9dd-aa18-4b40-a58b-3b0ade9ef84d",
+												"exec": [
+													"pm.test(\"Should return Bad Request when totalModulesStudied is not a number\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": \"7\",\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (averageScore type)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "65c45094-6553-4515-afc3-97a634d79397",
+												"exec": [
+													"pm.test(\"Should return Bad Request when averageScore is not a number\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": \"2\",\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (timeStudied type)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d0e4f563-2ddb-4831-9a44-31e0e0964817",
+												"exec": [
+													"pm.test(\"Should return Bad Request when timeStudied is not a number\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2,\n    \"timeStudied\": \"999\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "02d7d411-baed-4420-99c3-5006aca833b1",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "dd0cf60c-f3a9-4d59-8de9-805da272a2b3",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "wrong field data",
+							"item": [
+								{
+									"name": "/courses/:courseId session1 (totalModulesStudied negative)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "aaad53de-63b4-4047-aa9b-d55cc8808dc4",
+												"exec": [
+													"pm.test(\"Should return Bad Request when totalModulesStudied is a negativenumber\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": -7,\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (averageScore negative)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f326a99a-d276-4405-b735-49e9cb990e6d",
+												"exec": [
+													"pm.test(\"Should return Bad Request when averageScore is a negative number\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": -2,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 (timeStudied negative)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "6603720c-eecd-4efd-a713-17f094cb5f68",
+												"exec": [
+													"pm.test(\"Should return Bad Request when timeStudied is a negative number\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2,\n    \"timeStudied\": -999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "46de411e-8b7b-4b8c-a8a4-47d013cef422",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "9b1a5e3a-1cdf-4563-bcea-7dae325d5d27",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "add sessions",
+					"item": [
+						{
+							"name": "add valid session stats",
+							"item": [
+								{
+									"name": "/courses/:courseId session1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "56f086d5-2732-40ab-b09d-9d545cc9a61b",
+												"exec": [
+													"pm.test(\"Should return 201 (created) when adding session1 to course1 for user1\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session01}}\",\n    \"totalModulesStudied\": 7,\n    \"averageScore\": 2,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId/sessions/:sessionId session1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ebd33b15-833e-405f-b2d2-cab0a896639d",
+												"exec": [
+													"pm.test(\"Should return an object with valid fields\", function () {",
+													"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
+													"    pm.response.to.have.jsonBody(\"averageScore\");",
+													"    pm.response.to.have.jsonBody(\"timeStudied\");",
+													"});",
+													"",
+													"pm.test(\"Should return fields added for session1\", function () {",
+													"    pm.expect(pm.response.json().totalModulesStudied).to.equal(7);",
+													"    pm.expect(pm.response.json().averageScore).to.equal(2);",
+													"    pm.expect(pm.response.json().timeStudied).to.equal(999);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session01}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}",
+												"sessions",
+												"{{session01}}"
+											]
+										},
+										"description": "Fetches a single study session"
+									},
+									"response": [
+										{
+											"name": "Study session stats",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId",
+														"sessions",
+														":sessionId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														},
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId only session1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "919fc5ae-724f-41c6-9fd0-18fb9b09c306",
+												"exec": [
+													"pm.test(\"Should return an object with valid fields\", function () {",
+													"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
+													"    pm.response.to.have.jsonBody(\"averageScore\");",
+													"    pm.response.to.have.jsonBody(\"timeStudied\");",
+													"});",
+													"",
+													"pm.test(\"Should return fields added for session1\", function () {",
+													"    pm.expect(pm.response.json().totalModulesStudied).to.equal(7);",
+													"    pm.expect(pm.response.json().averageScore).to.equal(2);",
+													"    pm.expect(pm.response.json().timeStudied).to.equal(999);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Fetches course lifetime statistics"
+									},
+									"response": [
+										{
+											"name": "Course lifetime stats",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<string>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId/sessions/:sessionId (invalid sessionId)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f7603897-f947-4380-b8d4-7352fcd153a4",
+												"exec": [
+													"pm.test(\"Should return Not Found when session2 is not present\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
 										},
 										{
-											"key": "sessionId"
+											"listen": "prerequest",
+											"script": {
+												"id": "2f15797b-dc70-4819-8282-22a72e8bca0b",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}/sessions/not-added-session",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}",
+												"sessions",
+												"not-added-session"
+											]
+										},
+										"description": "Fetches a single study session"
+									},
+									"response": [
+										{
+											"name": "Study session stats",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId",
+														"sessions",
+														":sessionId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														},
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
 										}
 									]
 								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "add another valid session stat",
+							"item": [
 								{
-									"key": "Content-Type",
-									"value": "application/json"
+									"name": "/courses/:courseId session2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f7cb913d-d84a-459d-a8f9-40c17c63ef08",
+												"exec": [
+													"pm.test(\"Adding session1 to course1 for user1 should return 201\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sessionId\": \"{{session02}}\",\n    \"totalModulesStudied\": 3,\n    \"averageScore\": 3,\n    \"timeStudied\": 999\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Persists a session study event"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"sessionId\": \"<uuid>\",\n    \"totalModulesStudied\": \"<number>\",\n    \"averageScore\": \"<number>\",\n    \"timeStudied\": \"<number>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId/sessions/:sessionId session2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "24c62ecb-5f24-4f96-8fdd-2dd3cd243695",
+												"exec": [
+													"pm.test(\"Should return an object with valid fields\", function () {",
+													"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
+													"    pm.response.to.have.jsonBody(\"averageScore\");",
+													"    pm.response.to.have.jsonBody(\"timeStudied\");",
+													"});",
+													"",
+													"pm.test(\"Should return an fields added for session2\", function () {",
+													"    pm.expect(pm.response.json().totalModulesStudied).to.equal(3);",
+													"    pm.expect(pm.response.json().averageScore).to.equal(3);",
+													"    pm.expect(pm.response.json().timeStudied).to.equal(999);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}/sessions/{{session02}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}",
+												"sessions",
+												"{{session02}}"
+											]
+										},
+										"description": "Fetches a single study session"
+									},
+									"response": [
+										{
+											"name": "Study session stats",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<uuid>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId/sessions/:sessionId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId",
+														"sessions",
+														":sessionId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														},
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
+										}
+									]
+								},
+								{
+									"name": "/courses/:courseId session1 and session2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "428bf231-262e-4662-9371-28cc5fd5a101",
+												"exec": [
+													"pm.test(\"Should return an object with valid fields\", function () {",
+													"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
+													"    pm.response.to.have.jsonBody(\"averageScore\");",
+													"    pm.response.to.have.jsonBody(\"timeStudied\");",
+													"});",
+													"",
+													"pm.test(\"Should return fields added for session1 and session2\", function () {",
+													"    pm.expect(pm.response.json().totalModulesStudied).to.equal(10);",
+													"    pm.expect(pm.response.json().averageScore).to.equal(2.3);",
+													"    pm.expect(pm.response.json().timeStudied).to.equal(1998);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Identifies the user",
+												"key": "X-User-Id",
+												"value": "{{user1}}"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/{{course1}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												"{{course1}}"
+											]
+										},
+										"description": "Fetches course lifetime statistics"
+									},
+									"response": [
+										{
+											"name": "Course lifetime stats",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) Identifies the user",
+														"key": "X-User-Id",
+														"value": "<string>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId"
+													],
+													"variable": [
+														{
+															"key": "courseId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
+										}
+									]
 								}
 							],
-							"cookie": [],
-							"body": "{\n \"sessionId\": \"urn:uuid:36c57bfb-d660-748b-4f49-6ed6f05a3b19\",\n \"totalModulesStudied\": -80637159.7495382,\n \"averageScore\": -71863462.14816947,\n \"timeStudied\": 49320296.96465552\n}"
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
 						}
-					]
-				},
-				{
-					"name": "/courses/:courseId session1 and session2",
+					],
 					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8f30d2ab-a442-4896-998b-53cbb04dc9e8",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
 						{
 							"listen": "test",
 							"script": {
-								"id": "428bf231-262e-4662-9371-28cc5fd5a101",
+								"id": "dcae9dd4-8ffd-45dc-a37a-8ac36ff2d2dd",
+								"type": "text/javascript",
 								"exec": [
-									"pm.test(\"Should return an object with valid fields\", function () {",
-									"    pm.response.to.have.jsonBody(\"totalModulesStudied\");",
-									"    pm.response.to.have.jsonBody(\"averageScore\");",
-									"    pm.response.to.have.jsonBody(\"timeStudied\");",
-									"});",
-									"",
-									"pm.test(\"Should return fields added for session1 and session2\", function () {",
-									"    pm.expect(pm.response.json().totalModulesStudied).to.equal(10);",
-									"    pm.expect(pm.response.json().averageScore).to.equal(2.3);",
-									"    pm.expect(pm.response.json().timeStudied).to.equal(1998);",
-									"});"
-								],
-								"type": "text/javascript"
+									""
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"strictSSL": false
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"description": "(Required) Identifies the user",
-								"key": "X-User-Id",
-								"value": "{{user1}}"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course1}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course1}}"
-							]
-						},
-						"description": "Fetches course lifetime statistics"
-					},
-					"response": [
-						{
-							"name": "Course lifetime stats",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) Identifies the user",
-										"key": "X-User-Id",
-										"value": "<string>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/courses/:courseId",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"courses",
-										":courseId"
-									],
-									"variable": [
-										{
-											"key": "courseId"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"totalModulesStudied\": -83101294.9397291,\n \"averageScore\": 29046007.213106766,\n \"timeStudied\": -19766712.2807879\n}"
-						}
-					]
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"protocolProfileBehavior": {}
