@@ -71,15 +71,15 @@ const isBodyValid = (body) => {
         return false;
     }
 
-    if (typeof(body.totalModulesStudied) !== "number") {
+    if (typeof(body.totalModulesStudied) !== "number" || body.totalModulesStudied < 0) {
         return false;
     }
 
-    if (typeof(body.averageScore) !== "number") {
+    if (typeof(body.averageScore) !== "number" || body.averageScore < 0) {
         return false;
     }
 
-    if (typeof(body.timeStudied) !== "number") {
+    if (typeof(body.timeStudied) !== "number" || body.timeStudied < 0) {
         return false;
     }
 
