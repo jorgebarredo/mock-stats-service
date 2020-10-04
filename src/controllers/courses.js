@@ -2,7 +2,7 @@ const sessionStat = require('../models/sessionStat');
 
 const User = require('../models/user').User;
 
-class Stats {
+class Course {
     constructor() {
         this.users = new Map();
     }
@@ -74,5 +74,5 @@ class Stats {
 }
 
 module.exports = {
-    Stats: Stats
+    Course: Course
 }

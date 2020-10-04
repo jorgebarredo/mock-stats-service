@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const Stats = require('../controllers/stats').Stats;
+const Course = require('../controllers/courses').Course;
 
-const stats = new Stats();
+const course = new Course();
 
 /**
  * Fetches a single study session.
@@ -14,7 +14,7 @@ router.get('/:courseId', (req, res) => {
     }
 
     try {
-        const courseStats = stats.getCourseStats(userId, req.params.courseId);
+        const courseStats = course.getCourseStats(userId, req.params.courseId);
         res.send(courseStats);
     } catch {
         res.sendStatus(404); // Not found.
@@ -32,7 +32,7 @@ router.get('/:courseId/sessions/:sessionId', (req, res) => {
     }
 
     try {
-        const sessionStats = stats.getSessionStats(userId, req.params.courseId, req.params.sessionId);    
+        const sessionStats = course.getSessionStats(userId, req.params.courseId, req.params.sessionId);    
         res.send(sessionStats);
     } catch {
         res.sendStatus(404); // Not found
@@ -54,7 +54,7 @@ router.post('/:courseId', (req, res) => {
         return;
     }
 
-    const stat = stats.saveSessionStats(userId, req.params.courseId, req.body);
+    const stat = course.saveSessionStats(userId, req.params.courseId, req.body);
     res.sendStatus(201);
 });
 
